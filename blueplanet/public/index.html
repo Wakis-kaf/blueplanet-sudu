@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!--可以让国产浏览器默认采用高速浏览器渲染页面-->
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--<link rel="icon" href="<%= BASE_URL %>favicon.ico">-->
+    <link href="favicon.ico" rel="shortcut icon" type="image/icon">
+    <title>蓝星数独</title>
+    <script>
+      /*
+      注意点:
+      预渲染的本质就是在打包时就"模拟浏览器"提前访问路由对应的网页, 然后将访问的结果写入到.html文件中
+      但是由于在打包时访问并不是通过"真实的浏览器"来访问, 所以拿不到正是的像素比
+      所以预渲染时写入到.html文件中的meta就是错误的
+      也正是因为预渲染的时候已经写入过meta标签了, 而运行的时候又会执行一次JS代码再写入一次
+      就导致了网页中有两个meta标签
+      * */
+      //let scale = 1.0 / window.devicePixelRatio;
+      //let text = `<meta name="viewport" content="width=device-width, initial-scale=${scale}, maximum-scale=${scale}, minimum-scale=${scale}, user-scalable=no">`;
+      //document.write(text);
+      // document.documentElement.style.fontSize = window.innerWidth / 7.5 + "px";
+      // document.documentElement.setAttribute('data-dpr', parseInt(window.devicePixelRatio) + '');
+      document.documentElement.setAttribute('data-theme', 'theme');
+    </script>
+
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
+<!--
+1. 初始化html中的代码
+ 借助fastclick解决移动端100~300ms的点击事件延迟问题
+2. 借助postcss-pxtorem实现自动将px转换成rem
+
+3.清空默认样式和全局同一样式
+注意点：在移动端开发中，一般情况下我们不需要让字体大小随着屏幕尺寸变化而变化
+
+4.引入fontcont时，修改iconfont为以下
+/*表示以iconfont开头的类名和包含iconfont的类名*/
+[class^='iconfont'],[class*='iconfont'] {
+-->
